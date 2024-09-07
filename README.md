@@ -2,7 +2,7 @@ Event Management System
 
 Project Description
 
-    The Event Management System is an application for creating, managing, and participating in events. Users can create events, add guests, subscribe to events as guests, and unsubscribe from them. The project supports user authentication and email notifications.
+The Event Management System is an application for creating, managing, and participating in events. Users can create events, add guests, subscribe to events as guests, and unsubscribe from them. The project supports user authentication and email notifications.
 
 Installation and Setup
 
