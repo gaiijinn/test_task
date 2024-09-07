@@ -6,6 +6,7 @@ from rest_framework import status
 from . import models
 from . import serializers
 from . import permissions
+from .services.email_service import EventGuestEmail
 
 # Create your views here.
 
@@ -47,6 +48,9 @@ class EventViewSet(viewsets.ModelViewSet):
         if event.organizer != self.request.user and self.request.user not in event.guests.all():
             event.guests.add(request.user)
             event.save()
+
+            sender = EventGuestEmail(self.request.user.email, event)
+            sender.send_mail()
 
             return Response(status=status.HTTP_201_CREATED)
 
