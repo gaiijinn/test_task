@@ -8,6 +8,9 @@ class AdditionalInfo(models.Model):
     time_created = models.TimeField(auto_now_add=True)
     date_created = models.DateField(auto_now_add=True)
 
+    class Meta:
+        abstract = True
+
 
 class Event(AdditionalInfo):
     title = models.CharField(max_length=128, verbose_name='Event title')
@@ -16,4 +19,4 @@ class Event(AdditionalInfo):
     organizer = models.ForeignKey(to=get_user_model(), related_name='event', verbose_name='Event organizer',
                                   on_delete=models.CASCADE)
 
-    guests = models.ManyToManyField(to=get_user_model(), related_name='event_guest')
+    guests = models.ManyToManyField(to=get_user_model(), related_name='event_guest', blank=True)
