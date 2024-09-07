@@ -16,4 +16,4 @@ class Event(AdditionalInfo):
     organizer = models.ForeignKey(to=get_user_model(), related_name='event', verbose_name='Event organizer',
                                   on_delete=models.CASCADE)
 
-    guests = models.ManyToManyField(to=get_user_model())
+    guests = models.ManyToManyField(to=get_user_model(), related_name='event_guest')
