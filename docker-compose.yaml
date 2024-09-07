@@ -1,0 +1,10 @@
+services:
+  test_task:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./test_project:/test_project
+    command:
+      sh -c "python manage.py runserver 0.0.0.0:8000"
