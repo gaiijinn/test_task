@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+DOMAIN_NAME = "127.0.0.1"
+PORT = "8000"
 
 # Application definition
 
@@ -144,7 +146,11 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",  # for swagger
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
 }
+
 
 # JWT
 
@@ -181,3 +187,11 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
+# Email
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "vladruban8@gmail.com"
+EMAIL_HOST_PASSWORD = "mvjf rkbc croy kqqs"
+EMAIL_USE_SSL = True

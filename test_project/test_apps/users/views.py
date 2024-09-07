@@ -6,5 +6,5 @@ from . import serializers
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    queryset = get_user_model().objects.all()
     serializer_class = serializers.UserSerializer
-    queryset = get_user_model().objects.all().order_by('-id')
