@@ -8,5 +8,6 @@ router.register('users', views.UserViewSet)
 app_name = 'users'
 
 urlpatterns = [
+    path("api/v1/registration/", views.UserCreating.as_view(), name='registration'),
     path("api/v1/", include(router.urls)),
 ]
