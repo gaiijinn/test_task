@@ -57,3 +57,16 @@ class EventViewSet(viewsets.ModelViewSet):
         else:
             return Response({'detail': 'User is either the organizer or a guest'},
                             status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['post'])
+    def remove_user_as_guest(self, request, pk=None):
+        event = self.get_object()
+
+        if self.request.user in event.guests.all():
+            event.guests.remove(self.request.user)
+            event.save()
+
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response({'detail': 'User is not a guest of this event'},
+                        status=status.HTTP_400_BAD_REQUEST)
