@@ -7,6 +7,8 @@ class CustomEventPermission(BasePermission):
             return True
 
         if request.method == "POST":
+            if view.action == 'add_user_as_guest':
+                return request.user.is_authenticated
             return request.user.is_authenticated
 
         return request.user.is_authenticated
@@ -14,5 +16,8 @@ class CustomEventPermission(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
+
+        if view.action == 'add_user_as_guest':
+            return request.user.is_authenticated
 
         return obj.organizer == request.user
