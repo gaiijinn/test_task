@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_spectacular',
 
-    'test_apps.users.apps.UsersConfig'
+    'test_apps.users.apps.UsersConfig',
+    'test_apps.events.apps.EventsConfig',
 ]
 
 MIDDLEWARE = [
