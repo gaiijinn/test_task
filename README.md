@@ -6,15 +6,24 @@ The Event Management System is an application for creating, managing, and partic
 
 Installation and Setup
 
-1) Cloning the repository
+1) Cloning the repository:
+
 git clone https://github.com/gaiijinn/test_task
+
 2) Build the Docker image:
+
 docker-compose build
-3) Make database migrations
+
+3) Make database migrations:
+
 docker-compose run --rm test_task sh -c "python manage.py makemigrations"
+
 4) Aplly database migrations
+
 docker-compose run --rm test_task sh -c "python manage.py migrate"
+
 5) Start the container
+
 docker-compose up
 
 To view the documentation follow the link:
