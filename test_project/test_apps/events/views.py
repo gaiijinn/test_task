@@ -1,12 +1,13 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
 
 from . import models
 from . import serializers
 from . import permissions
+
 from .services.email_service import EventGuestEmail
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 
@@ -15,6 +16,17 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = models.Event.objects.all().select_related('organizer').prefetch_related('guests').order_by('-id')
     serializer_class = serializers.EventListSerializer
     permission_classes = (permissions.CustomEventPermission, )
+
+    filter_backends = (
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    )
+
+    search_fields = ('title',)
+
+    filterset_fields = (
+        "date_created",
+    )
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
