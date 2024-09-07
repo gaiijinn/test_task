@@ -4,6 +4,7 @@ from rest_framework.response import Response
 
 from . import models
 from . import serializers
+from . import permissions
 
 # Create your views here.
 
@@ -11,6 +12,7 @@ from . import serializers
 class EventViewSet(viewsets.ModelViewSet):
     queryset = models.Event.objects.all().select_related('organizer').prefetch_related('guests').order_by('-id')
     serializer_class = serializers.EventListSerializer
+    permission_classes = (permissions.CustomEventPermission, )
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
